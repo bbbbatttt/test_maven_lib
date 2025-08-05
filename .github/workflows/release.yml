@@ -13,9 +13,6 @@ jobs:
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
           gpg --batch --pinentry-mode loopback --import private.key
           rm -f private.key
-  
-      - name: checkout
-        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -48,6 +45,9 @@ jobs:
 
       - name: Check location and correct content settings.xml
         run: cat ~/.m2/settings.xml
+
+      - name: checkout
+        uses: actions/checkout@v4
 
       # - name: deploy
       #   run: mvn clean deploy -DskipTests -Prelease
