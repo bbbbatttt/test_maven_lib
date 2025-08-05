@@ -23,6 +23,9 @@ jobs:
       - name: Remove default Maven settings
         run: rm -f ~/.m2/settings.xml
 
+      - name: check loc
+        run: ls ~/.m2
+
       - name: Setup Maven settings
         uses: 1arp/create-a-file-action@0.4.5
         with:
