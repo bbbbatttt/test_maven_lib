@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>oi.gitgub.bbbbatttt</groupId>
+  <artifactId>test_maven_lib</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  
+  <name>test_maven_lib</name>
+  <description>test maven lib hello world</description>
+  <url>https://github.com/bbbbatttt/test_maven_lib</url>
+  
+  <licenses>
+	  <license>
+		  <name>The Apache Software License, Version 2.0</name>
+		  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	  </license>
+  </licenses>
+  
+  <developers>
+	  <developer>
+		  <id>bbbbatttt</id>
+		  <email>shamsutdinoff.elmir@ya.ru</email>
+	  </developer>
+  </developers>
+  
+  <scm>
+	  <connection>scm:git:git://github.com/bbbbatttt/test_maven_lib.git</connection>
+	  <developerConnection>scn:git:git@github.com:bbbbatttt/test_maven_lib.git</developerConnection>
+	  <url>https://github.com/bbbbatttt/test_maven_lib</url>
+  </scm>
+  
+  
+      <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <gpg.version>3.2.4</gpg.version>
+        <maven.javadoc.version>3.7.0</maven.javadoc.version>
+        <maven.source.version>3.3.1</maven.source.version>
+        <maven.compiler.version>3.9.0</maven.compiler.version>
+        <maven.surefire.version>3.3.0</maven.surefire.version>
+    </properties>
+  
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+                <version>${maven.compiler.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven.source.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${gpg.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.8.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+  
+</project>
