@@ -20,8 +20,10 @@ jobs:
         run: echo 'This step empty'
 
       - name: Get settings.xml from GitHub Secrets
-        run: |
-          echo "${{ secrets.MAVEN_SETTINGS_XML }}" > ~/.m2/settings.xml
+        uses: 1arp/create-a-file-action@0.4.5
+          path: ~/.m2
+          file: settings.xml
+          content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
       - name: Check location and correct content settings.xml
         run: cat ~/.m2/settings.xml
