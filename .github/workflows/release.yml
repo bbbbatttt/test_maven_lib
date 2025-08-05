@@ -8,9 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -34,6 +31,8 @@ jobs:
           isAbsolutePath: true
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Build and deploy
         run: mvn clean deploy -DskipTests -Prelease
