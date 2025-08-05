@@ -8,6 +8,9 @@ jobs:
     runs-on: macos-latest
     steps:
 
+      - name: checkout
+        uses: actions/checkout@v4
+
       - name: import GPG key
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
@@ -20,34 +23,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: check location
-        run: ls
-
-      - name: check location
-        run: ls ~/.m2
-
       - name: del settings
         run: rm -f ~/.m2/settings.xml
-
-      # - name: check location
-      #   run: ls /Users
 
       - name: get settings from secrets
         uses: 1arp/create-a-file-action@0.4.5
         with:
-          path: /Users/runner/.m2
+          path: ~/.m2
           isAbsolutePath: true
           file: settings.xml
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
-
-      - name: check location
-        run: ls ~/.m2
-
-      - name: Check location and correct content settings.xml
-        run: cat ~/.m2/settings.xml
-
-      - name: checkout
-        uses: actions/checkout@v4
 
       - name: deploy
         run: mvn clean deploy -DskipTests -Prelease
