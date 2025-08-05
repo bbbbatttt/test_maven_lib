@@ -39,6 +39,7 @@ jobs:
         uses: 1arp/create-a-file-action@0.4.5
         with:
           path: ~/.m2/settings.xml
+          isAbsolutePath: false
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
           write-mode: overwrite
 
