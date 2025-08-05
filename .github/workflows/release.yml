@@ -32,6 +32,16 @@ jobs:
       - name: check location
         run: ls ~/.m2
 
+      - name: get settings from secrets
+        uses: 1arp/create-a-file-action@v0.4.5
+        with:
+          path: ~/.m2
+          file: settings.xml
+          contente: ${{ secrets.MAVEN_SETTINGS_XML }}
+
+      - name: check location
+        run: ls ~/.m2
+
       # - name: Check location and correct content settings.xml
       #   run: cat ~/.m2/settings.xml
 
