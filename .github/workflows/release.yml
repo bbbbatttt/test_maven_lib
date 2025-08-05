@@ -14,31 +14,25 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: check keys
-        run: gpg --list-keys
-
       - name: Import GPG key
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
           gpg --batch --pinentry-mode loopback --import private.key
           rm -f private.key
 
-      - name: check keys
-        run: gpg --list-keys
+      - name: Remove default Maven settings
+        run: rm -f ~/.m2/settings
 
-      # - name: Remove default Maven settings
-      #   run: rm -f ~/.m2/settings
+      - name: Setup Maven settings
+        uses: 1arp/create-a-file-action@0.4.5
+        with:
+          path: ~/.m2
+          file: settings.xml
+          isAbsolutePath: true
+          content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
-      # - name: Setup Maven settings
-      #   uses: 1arp/create-a-file-action@0.4.5
-      #   with:
-      #     path: ~/.m2
-      #     file: settings.xml
-      #     isAbsolutePath: true
-      #     content: ${{ secrets.MAVEN_SETTINGS_XML }}
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
-
-      # - name: Build and deploy
-      #   run: mvn -B clean deploy -DskipTests -Prelease
+      - name: Build and deploy
+        run: mvn clean deploy -DskipTests -Prelease
