@@ -13,6 +13,9 @@ jobs:
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
           gpg --batch --pinentry-mode loopback --import private.key
           rm -f private.key
+  
+      - name: Check location and correct content settings.xml
+        run: cat ~/.m2/settings.xml 
 
       - name: checkout
         uses: actions/checkout@v4
