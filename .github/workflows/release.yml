@@ -40,8 +40,8 @@ jobs:
           file: settings.xml
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
-      # - name: check location
-      #   run: ls 
+      - name: check location
+        run: ls 
 
       - name: Check location and correct content settings.xml
         run: cat ~/.m2/settings.xml
