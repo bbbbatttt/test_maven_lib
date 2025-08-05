@@ -37,7 +37,7 @@ jobs:
         with:
           path: ~/.m2
           file: settings.xml
-          contente: ${{ secrets.MAVEN_SETTINGS_XML }}
+          content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
       - name: check location
         run: ls ~/.m2
