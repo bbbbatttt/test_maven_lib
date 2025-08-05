@@ -34,8 +34,11 @@ jobs:
           isAbsolutePath: true
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: check loc_2
+        run: ls ~/.m2
 
-      - name: Build and deploy
-        run: mvn clean deploy -DskipTests -Prelease
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
+
+      # - name: Build and deploy
+      #   run: mvn clean deploy -DskipTests -Prelease
