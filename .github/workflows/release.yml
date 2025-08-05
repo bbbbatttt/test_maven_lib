@@ -7,24 +7,15 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+
+      - name: checkout
+        uses: actions/checkout@4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Get GPG-key from GitHub Secrets
-        run: echo 'This step empty'
-
-      - name: Check has GPG-key
-        run: gpg --list-keys
-
-      - name: Get settings.xml from GitHub Secrets
-        uses: 1arp/create-a-file-action@0.4.5
-        with:
-          path: ~/.m2
-          file: settings.xml
-          content: ${{ secrets.MAVEN_SETTINGS_XML }}
-
-      - name: Check location and correct content settings.xml
-        run: cat ~/.m2/settings.xml
+      - name: deploy
+        run: mvn clean deploy -DskipTests -Prelease
