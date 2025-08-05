@@ -8,6 +8,12 @@ jobs:
     runs-on: macos-latest
     steps:
 
+      - name: import GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+          gpg --batch --pinentry-mode loopback --import private.key
+          rm -f private.key
+
       - name: checkout
         uses: actions/checkout@v4
 
