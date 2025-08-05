@@ -23,8 +23,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Check location and correct content settings.xml
-        run: cat ~/.m2/settings.xml
+      - name: check location
+        run: ls ~/.m2
 
-      - name: deploy
-        run: mvn clean deploy -DskipTests -Prelease
+      # - name: Check location and correct content settings.xml
+      #   run: cat ~/.m2/settings.xml
+
+      # - name: deploy
+      #   run: mvn clean deploy -DskipTests -Prelease
