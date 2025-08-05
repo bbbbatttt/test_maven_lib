@@ -21,7 +21,7 @@ jobs:
           rm -f private.key
 
       - name: check loc_1
-        run: ls ~/.m2
+        run: cat ~/.m2/settings.xml
 
       - name: Remove default Maven settings
         run: rm -f ~/.m2/settings
@@ -38,7 +38,7 @@ jobs:
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
       - name: check loc_3
-        run: ls ~/.m2
+        run: cat ~/.m2/settings.xml
 
       # - name: Checkout code
       #   uses: actions/checkout@v4
