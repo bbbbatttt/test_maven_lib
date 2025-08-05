@@ -38,7 +38,6 @@ jobs:
           path: ~/.m2/settings.xml
           isAbsolutePath: false
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
-          write-mode: overwrite
 
       # - name: check location
       #   run: ls 
