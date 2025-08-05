@@ -21,8 +21,8 @@ jobs:
 
       - name: Get settings.xml from GitHub Secrets
         uses: 1arp/create-a-file-action@0.4.5
+        with:
           path: ~/.m2
-          isAbsolutePath: false
           file: settings.xml
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
