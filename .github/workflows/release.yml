@@ -29,7 +29,7 @@ jobs:
       - name: Setup Maven settings
         uses: 1arp/create-a-file-action@0.4.5
         with:
-          path: ~/.m2
+          path: /home/runner/.m2
           file: settings.xml
           isAbsolutePath: true
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
