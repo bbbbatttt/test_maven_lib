@@ -26,9 +26,10 @@ jobs:
       - name: Setup Maven settings
         uses: 1arp/create-a-file-action@0.4.5
         with:
-          path: ~/.m2/settings.xml
+          path: ~/.m2
+          file: settings.xml
+          isAbsolutePath: true
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
-          write-mode: overwrite
 
       - name: Checkout code
         uses: actions/checkout@v4
