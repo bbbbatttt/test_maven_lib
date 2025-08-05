@@ -40,7 +40,7 @@ jobs:
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
       - name: check location
-        run: ls ~/.m2
+        run: ls users
 
       # - name: Check location and correct content settings.xml
       #   run: cat ~/.m2/settings.xml
