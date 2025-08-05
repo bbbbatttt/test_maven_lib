@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -23,9 +26,6 @@ jobs:
       - name: Remove default Maven settings
         run: rm -f ~/.m2/settings.xml
 
-      - name: check loc
-        run: ls ~/.m2
-
       - name: Setup Maven settings
         uses: 1arp/create-a-file-action@0.4.5
         with:
@@ -34,11 +34,5 @@ jobs:
           isAbsolutePath: true
           content: ${{ secrets.MAVEN_SETTINGS_XML }}
 
-      - name: check loc_2
-        run: ls ~/.m2
-
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
-
-      # - name: Build and deploy
-      #   run: mvn clean deploy -DskipTests -Prelease
+      - name: Build and deploy
+        run: mvn clean deploy -DskipTests -Prelease
